@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO & Metadata -->
+    <title>BeanCraft • Artisanal Coffee Ratings & Precision Brew Guide</title>
+    <meta name="description" content="Explore world-class specialty coffees, vote for your favorite roasts, log cupping tasting notes, and use our precision brew timer & golden ratio calculator." />
+    <meta name="keywords" content="coffee ratings, specialty coffee, pour over, single origin, espresso, brew timer, coffee ratio calculator, cupping notes" />
+    <meta name="author" content="BeanCraft" />
+    <meta name="theme-color" content="#1a110a" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BeanCraft • Artisanal Coffee Ratings & Precision Brew Guide" />
+    <meta property="og:description" content="Vote for top artisanal roasts, log cupping notes, and precision brew your favorite single-origin beans." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1200&q=80" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Ambient Coffee Aroma Lighting Glows -->
+    <div class="ambient-glow glow-1" aria-hidden="true"></div>
+    <div class="ambient-glow glow-2" aria-hidden="true"></div>
+    <div class="ambient-glow glow-3" aria-hidden="true"></div>
+
+    <div class="app-wrapper">
+      <!-- Navigation Bar -->
+      <header class="navbar">
+        <div class="nav-container">
+          <div class="brand-group">
+            <a href="#" class="brand-link" id="brand-home" aria-label="BeanCraft Home">
+              <div class="logo-badge">
+                <svg class="coffee-steam-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                  <path class="steam steam-1" d="M6 1v3"></path>
+                  <path class="steam steam-2" d="M10 1v3"></path>
+                  <path class="steam steam-3" d="M14 1v3"></path>
+                </svg>
+              </div>
+              <div class="brand-text">
+                <span class="brand-name">Bean<span class="highlight">Craft</span></span>
+                <span class="brand-tagline">Specialty Coffee Board</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Quick Search Bar -->
+          <div class="search-box-wrapper">
+            <div class="search-bar">
+              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="search-input" placeholder="Search roasts, origins, flavor notes... (/)" aria-label="Search coffees" autocomplete="off" />
+              <button type="button" id="clear-search-btn" class="clear-search-btn hidden" aria-label="Clear search">✕</button>
+              <kbd class="shortcut-key" title="Press / to search">/</kbd>
+            </div>
+          </div>
+
+          <!-- Top Navigation Controls -->
+          <div class="nav-actions">
+            <button type="button" id="open-brew-lab-btn" class="nav-btn btn-brew-lab" title="Open Barista Brew Timer & Ratio Calculator (B)">
+              <span class="btn-icon">⏱️</span>
+              <span class="btn-text">Brew Lab</span>
+            </button>
+            <button type="button" id="open-add-roast-btn" class="nav-btn btn-add-roast" title="Add New Coffee Roast (N)">
+              <span class="btn-icon">➕</span>
+              <span class="btn-text">Add Roast</span>
+            </button>
+            <button type="button" id="theme-toggle-btn" class="nav-btn icon-only" title="Toggle Dark Roast / Cafe Creme (T)" aria-label="Toggle Theme">
+              <span class="theme-icon" id="theme-icon">🌙</span>
+            </button>
+            <button type="button" id="sound-toggle-btn" class="nav-btn icon-only" title="Toggle Cafe Audio (M)" aria-label="Toggle Sound Effects">
+              <span class="sound-icon" id="sound-icon">🔊</span>
+            </button>
+            <button type="button" id="shortcuts-btn" class="nav-btn icon-only" title="Keyboard Shortcuts (?)" aria-label="Keyboard Shortcuts">
+              <span class="shortcuts-icon">⌨️</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Container -->
+      <main class="main-content">
+        <!-- Hero Section & Live Stats -->
+        <section class="hero-section">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <span class="pulse-dot"></span>
+              <span>2026 Community Cupping Index</span>
+            </div>
+            <h1 class="hero-title">
+              Taste, Rate & Brew <br />
+              <span class="gradient-text">Specialty Coffee</span>
+            </h1>
+            <p class="hero-subtitle">
+              Discover curated single origins and artisanal espresso blends. Log cupping notes, precision brew with our golden ratio timer, and vote for the world’s most exquisite roasts.
+            </p>
+
+            <!-- Metrics Bar -->
+            <div class="stats-grid">
+              <div class="stat-card" id="stat-total-roasts">
+                <div class="stat-icon">☕</div>
+                <div class="stat-info">
+                  <div class="stat-value" id="total-roasts-count">10</div>
+                  <div class="stat-label">Curated Roasts</div>
+                </div>
+              </div>
+              <div class="stat-card" id="stat-total-votes">
+                <div class="stat-icon">🗳️</div>
+                <div class="stat-info">
+                  <div class="stat-value" id="total-votes-count">242</div>
+                  <div class="stat-label">Community Votes</div>
+                </div>
+              </div>
+              <div class="stat-card" id="stat-top-roast">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-info">
+                  <div class="stat-value truncate" id="top-roast-name">Panama Geisha</div>
+                  <div class="stat-label">Community #1 Pick</div>
+                </div>
+              </div>
+              <div class="stat-card" id="stat-avg-rating">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-info">
+                  <div class="stat-value" id="avg-rating-value">4.9 / 5.0</div>
+                  <div class="stat-label">Avg Cupping Score</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Filters & Toolbar Hub -->
+        <section class="toolbar-section" aria-label="Filter coffees">
+          <!-- Primary Category Pills -->
+          <div class="category-scroll-container">
+            <div class="category-pills" role="tablist">
+              <button type="button" class="category-pill active" data-category="all" role="tab" aria-selected="true">
+                <span class="pill-icon">✨</span> All Beans
+              </button>
+              <button type="button" class="category-pill" data-category="single_origin" role="tab" aria-selected="false">
+                <span class="pill-icon">🌿</span> Single Origin
+              </button>
+              <button type="button" class="category-pill" data-category="espresso" role="tab" aria-selected="false">
+                <span class="pill-icon">🍫</span> Espresso Blends
+              </button>
+              <button type="button" class="category-pill" data-category="light" role="tab" aria-selected="false">
+                <span class="pill-icon">🌸</span> Light Roast
+              </button>
+              <button type="button" class="category-pill" data-category="medium" role="tab" aria-selected="false">
+                <span class="pill-icon">🫘</span> Medium Roast
+              </button>
+              <button type="button" class="category-pill" data-category="dark" role="tab" aria-selected="false">
+                <span class="pill-icon">🌑</span> Dark Roast
+              </button>
+              <button type="button" class="category-pill" data-category="decaf" role="tab" aria-selected="false">
+                <span class="pill-icon">🌙</span> Decaf
+              </button>
+              <button type="button" class="category-pill" data-category="favorites" role="tab" aria-selected="false">
+                <span class="pill-icon">❤️</span> My Wishlist (<span id="fav-count">0</span>)
+              </button>
+            </div>
+          </div>
+
+          <!-- Secondary Filters Row -->
+          <div class="filter-controls-bar">
+            <!-- Flavor Tags Quick Filter -->
+            <div class="flavor-filters">
+              <span class="filter-label">Flavor Notes:</span>
+              <div class="flavor-pills-wrap" id="flavor-pills-wrap">
+                <button type="button" class="flavor-pill" data-flavor="Floral">🌸 Floral</button>
+                <button type="button" class="flavor-pill" data-flavor="Citrus">🍋 Citrus</button>
+                <button type="button" class="flavor-pill" data-flavor="Honey">🍯 Honey</button>
+                <button type="button" class="flavor-pill" data-flavor="Caramel">🍮 Caramel</button>
+                <button type="button" class="flavor-pill" data-flavor="Chocolate">🍫 Chocolate</button>
+                <button type="button" class="flavor-pill" data-flavor="Berry">🍒 Berry</button>
+                <button type="button" class="flavor-pill" data-flavor="Nutty">🥜 Nutty</button>
+                <button type="button" class="flavor-pill" data-flavor="Earthy">🌿 Earthy</button>
+              </div>
+            </div>
+
+            <!-- Sorting and View Controls -->
+            <div class="sort-view-group">
+              <div class="select-wrapper">
+                <label for="origin-select" class="sr-only">Filter by Origin</label>
+                <select id="origin-select" aria-label="Filter by Country/Origin">
+                  <option value="all">🌍 All Origins</option>
+                  <option value="Panama">🇵🇦 Panama</option>
+                  <option value="Ethiopia">🇪🇹 Ethiopia</option>
+                  <option value="Costa Rica">🇨🇷 Costa Rica</option>
+                  <option value="Colombia">🇨🇴 Colombia</option>
+                  <option value="Kenya">🇰🇪 Kenya</option>
+                  <option value="Guatemala">🇬🇹 Guatemala</option>
+                  <option value="Brazil">🇧🇷 Brazil</option>
+                  <option value="Indonesia">🇮🇩 Indonesia</option>
+                  <option value="Rwanda">🇷🇼 Rwanda</option>
+                  <option value="Peru">🇵🇪 Peru</option>
+                </select>
+              </div>
+
+              <div class="select-wrapper">
+                <label for="sort-select" class="sr-only">Sort Coffees</label>
+                <select id="sort-select" aria-label="Sort Coffees">
+                  <option value="votes">🔥 Most Voted</option>
+                  <option value="rating">⭐ Highest Rated</option>
+                  <option value="name">🔤 Name (A-Z)</option>
+                  <option value="roast_light">🌱 Lightest Roast First</option>
+                  <option value="roast_dark">🔥 Darkest Roast First</option>
+                  <option value="newest">🕒 Newest Added</option>
+                </select>
+              </div>
+
+              <div class="view-toggle">
+                <button type="button" id="view-grid-btn" class="view-btn active" title="Grid View" aria-label="Grid View">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                  </svg>
+                </button>
+                <button type="button" id="view-list-btn" class="view-btn" title="Compact List View" aria-label="List View">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="8" y1="6" x2="21" y2="6"></line>
+                    <line x1="8" y1="12" x2="21" y2="12"></line>
+                    <line x1="8" y1="18" x2="21" y2="18"></line>
+                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Filter Banner (Visible when filters applied) -->
+          <div class="active-filter-summary hidden" id="active-filter-bar">
+            <span class="summary-text" id="filter-summary-text">Showing 10 roasts</span>
+            <button type="button" id="reset-filters-btn" class="btn-reset-filters">Reset Filters ✕</button>
+          </div>
+        </section>
+
+        <!-- Coffee Showcase Grid Section -->
+        <section class="roasts-grid-section" aria-labelledby="roasts-heading">
+          <div class="section-title-wrap">
+            <h2 id="roasts-heading" class="section-title">Curated Selection</h2>
+            <div class="section-meta">
+              <span id="status" class="status-msg" role="status" aria-live="polite"></span>
+              <button type="button" id="export-json-btn" class="btn-export-ghost" title="Export Tasting Collection to JSON">
+                <span>📥 Export Data</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Coffee Cards Container -->
+          <div id="coffee-list" class="coffee-grid" aria-live="polite">
+            <!-- Loading Skeleton Cards will be replaced by app.js -->
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+          </div>
+
+          <!-- Empty State (When no coffees match filter) -->
+          <div id="empty-state" class="empty-state hidden">
+            <div class="empty-icon">☕</div>
+            <h3>No coffee roasts found</h3>
+            <p>Try adjusting your search terms, flavor filters, or origin selection.</p>
+            <button type="button" class="btn-primary" id="empty-reset-btn">Reset All Filters</button>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="app-footer">
+        <div class="footer-inner">
+          <div class="footer-brand">
+            <div class="footer-logo">☕ BeanCraft</div>
+            <p class="footer-tagline">Crafted with passion for specialty coffee roasters & enthusiasts worldwide.</p>
+          </div>
+          <div class="footer-links">
+            <button type="button" class="footer-link" id="footer-brew-lab-btn">Barista Brew Lab</button>
+            <button type="button" class="footer-link" id="footer-add-roast-btn">Submit Roast</button>
+            <button type="button" class="footer-link" id="footer-shortcuts-btn">Keyboard Shortcuts</button>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODAL 1: Barista Brew Lab (Timer & Golden Ratio Calculator) -->
+    <!-- ========================================================================= -->
+    <div id="brew-lab-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="brew-lab-title">
+      <div class="modal-backdrop"></div>
+      <div class="modal-card brew-lab-card">
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <span class="modal-emoji">⏱️</span>
+            <div>
+              <h2 id="brew-lab-title" class="modal-title">Barista Brew Lab</h2>
+              <p class="modal-subtitle">Precision Countdown Timer & Golden Ratio Calculator</p>
+            </div>
+          </div>
+          <button type="button" class="modal-close-btn" data-close-modal="brew-lab-modal" aria-label="Close Brew Lab">✕</button>
+        </div>
+
+        <div class="modal-body">
+          <!-- Brew Lab Tabs -->
+          <div class="tab-headers">
+            <button type="button" class="tab-btn active" id="tab-btn-timer" data-tab="tab-timer">Precision Timer</button>
+            <button type="button" class="tab-btn" id="tab-btn-ratio" data-tab="tab-ratio">Ratio Calculator</button>
+            <button type="button" class="tab-btn" id="tab-btn-guides" data-tab="tab-guides">Brew Recipes</button>
+          </div>
+
+          <!-- TAB 1: Precision Multi-Stage Timer -->
+          <div class="tab-content active" id="tab-timer">
+            <div class="timer-method-selector">
+              <label for="timer-preset-select" class="form-label">Brew Method Preset:</label>
+              <select id="timer-preset-select" class="form-select">
+                <option value="v60">V60 Pour Over (3:00 • 4-stage pour)</option>
+                <option value="aeropress">AeroPress Inverted (2:00 • steep & plunge)</option>
+                <option value="chemex">Chemex (4:00 • clean body)</option>
+                <option value="frenchpress">French Press (4:30 • immersion full body)</option>
+                <option value="espresso">Espresso Extraction (0:30 • double shot)</option>
+                <option value="coldbrew">Cold Brew Flash Filter (Guide)</option>
+              </select>
+            </div>
+
+            <!-- Timer Display -->
+            <div class="timer-display-wrap">
+              <div class="timer-circle-progress">
+                <svg class="progress-ring" viewBox="0 0 220 220">
+                  <circle class="progress-ring-bg" cx="110" cy="110" r="95"></circle>
+                  <circle class="progress-ring-fill" id="timer-ring-fill" cx="110" cy="110" r="95"></circle>
+                </svg>
+                <div class="timer-text-content">
+                  <div class="timer-countdown" id="timer-countdown-display">03:00</div>
+                  <div class="timer-stage-name" id="timer-stage-name">Ready to Bloom</div>
+                  <div class="timer-stage-target" id="timer-stage-target">Pour ~50g water</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stage Steps Indicator -->
+            <div class="stage-stepper" id="timer-stages-indicator">
+              <div class="stage-step active" id="step-0"><span>1</span> Bloom</div>
+              <div class="stage-step" id="step-1"><span>2</span> 1st Pour</div>
+              <div class="stage-step" id="step-2"><span>3</span> 2nd Pour</div>
+              <div class="stage-step" id="step-3"><span>4</span> Drawdown</div>
+            </div>
+
+            <!-- Timer Action Buttons -->
+            <div class="timer-actions">
+              <button type="button" id="timer-start-btn" class="btn-timer-primary">
+                <span id="timer-btn-text">▶ Start Brew</span>
+              </button>
+              <button type="button" id="timer-reset-btn" class="btn-timer-secondary">↺ Reset</button>
+            </div>
+          </div>
+
+          <!-- TAB 2: Golden Ratio Calculator -->
+          <div class="tab-content" id="tab-ratio">
+            <div class="ratio-calc-grid">
+              <div class="calc-control-group">
+                <label for="ratio-preset" class="form-label">Brew Strength Ratio</label>
+                <select id="ratio-preset" class="form-select">
+                  <option value="15">1:15 • Rich & Full Bodied (Pour Over / French Press)</option>
+                  <option value="16" selected>1:16 • Golden Cup Standard (Balanced & Bright)</option>
+                  <option value="17">1:17 • Crisp & Tea-like (Geisha / Floral Light)</option>
+                  <option value="18">1:18 • Light & Delicate</option>
+                  <option value="2">1:2 • Concentrated Espresso Ratio</option>
+                </select>
+              </div>
+
+              <div class="calc-inputs-row">
+                <div class="calc-input-box">
+                  <label for="calc-coffee-grams" class="form-label">Coffee Dose (g)</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="calc-coffee-grams" value="18" min="5" max="100" step="0.5" />
+                    <span class="unit">g</span>
+                  </div>
+                </div>
+
+                <div class="calc-math-symbol">⇄</div>
+
+                <div class="calc-input-box">
+                  <label for="calc-water-grams" class="form-label">Total Water (ml / g)</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="calc-water-grams" value="288" min="50" max="2000" step="5" />
+                    <span class="unit">ml</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Computed Extraction Stats -->
+              <div class="calc-results-card">
+                <div class="calc-result-item">
+                  <span class="res-label">Expected Yield:</span>
+                  <span class="res-value" id="calc-yield-val">~252 ml</span>
+                </div>
+                <div class="calc-result-item">
+                  <span class="res-label">Estimated Cups:</span>
+                  <span class="res-value" id="calc-cups-val">1 Cup (250ml)</span>
+                </div>
+                <div class="calc-result-item">
+                  <span class="res-label">Ideal Water Temp:</span>
+                  <span class="res-value" id="calc-temp-val">92°C - 94°C (198°F - 201°F)</span>
+                </div>
+                <div class="calc-result-item">
+                  <span class="res-label">Bloom Dose:</span>
+                  <span class="res-value" id="calc-bloom-val">~54g (3× coffee)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: Brew Guides Cheatsheet -->
+          <div class="tab-content" id="tab-guides">
+            <div class="recipes-accordion">
+              <div class="recipe-card">
+                <div class="recipe-title">⚗️ V60 Pour Over</div>
+                <div class="recipe-specs">Grind: Medium-Fine • Ratio: 1:16 • Temp: 93°C • Time: 3:00</div>
+                <p class="recipe-desc">Rinse paper filter with hot water. Add 18g coffee. Pour 50g bloom, swirl gently for 45s. Pour steadily in spirals up to 288g by 1:45. Let drawdown complete by 3:00.</p>
+              </div>
+              <div class="recipe-card">
+                <div class="recipe-title">🚀 AeroPress (Inverted)</div>
+                <div class="recipe-specs">Grind: Medium • Ratio: 1:14 • Temp: 88°C • Time: 2:00</div>
+                <p class="recipe-desc">Invert AeroPress. Add 16g coffee. Pour 220g water at 88°C. Stir 10 times. Attach cap with rinsed filter. At 1:30, flip onto server and press gently for 30s.</p>
+              </div>
+              <div class="recipe-card">
+                <div class="recipe-title">🫖 French Press Immersion</div>
+                <div class="recipe-specs">Grind: Coarse • Ratio: 1:15 • Temp: 95°C • Time: 4:30</div>
+                <p class="recipe-desc">Add 30g coarse ground coffee. Pour 450g near-boiling water. Place lid on without pressing. At 4:00, gently break the crust with a spoon, scoop foam, and press slowly.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODAL 2: Add New Coffee Roast -->
+    <!-- ========================================================================= -->
+    <div id="add-roast-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="add-roast-title">
+      <div class="modal-backdrop"></div>
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <span class="modal-emoji">➕</span>
+            <div>
+              <h2 id="add-roast-title" class="modal-title">Submit a New Coffee Roast</h2>
+              <p class="modal-subtitle">Share an artisanal roast or single origin with the community</p>
+            </div>
+          </div>
+          <button type="button" class="modal-close-btn" data-close-modal="add-roast-modal" aria-label="Close Add Roast">✕</button>
+        </div>
+
+        <form id="add-roast-form" class="modal-body form-grid">
+          <div class="form-group">
+            <label for="roast-name" class="form-label">Roast / Coffee Name *</label>
+            <input type="text" id="roast-name" class="form-input" placeholder="e.g. Kenya Kirinyaga Ndiara" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="roast-origin" class="form-label">Country & Region *</label>
+              <input type="text" id="roast-origin" class="form-input" placeholder="e.g. Kenya (Kirinyaga)" required />
+            </div>
+            <div class="form-group">
+              <label for="roast-category" class="form-label">Category</label>
+              <select id="roast-category" class="form-select">
+                <option value="single_origin">Single Origin</option>
+                <option value="espresso">Espresso Blend</option>
+                <option value="decaf">Decaf</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="roast-level" class="form-label">Roast Profile</label>
+              <select id="roast-level" class="form-select">
+                <option value="Light">Light Roast</option>
+                <option value="Medium-Light">Medium-Light</option>
+                <option value="Medium" selected>Medium Roast</option>
+                <option value="Medium-Dark">Medium-Dark</option>
+                <option value="Dark">Dark Roast</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="roast-process" class="form-label">Process Method</label>
+              <select id="roast-process" class="form-select">
+                <option value="Washed">Washed</option>
+                <option value="Natural">Natural</option>
+                <option value="Honey">Honey Process</option>
+                <option value="Anaerobic">Anaerobic Fermentation</option>
+                <option value="Wet Hulled">Wet Hulled</option>
+                <option value="Swiss Water Decaf">Swiss Water Decaf</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="roast-elevation" class="form-label">Elevation (m)</label>
+              <input type="text" id="roast-elevation" class="form-input" placeholder="e.g. 1950m" value="1800m" />
+            </div>
+            <div class="form-group">
+              <label for="roast-brew" class="form-label">Recommended Brew</label>
+              <select id="roast-brew" class="form-select">
+                <option value="V60 Pour Over">V60 Pour Over</option>
+                <option value="Chemex">Chemex</option>
+                <option value="AeroPress">AeroPress</option>
+                <option value="Espresso">Espresso</option>
+                <option value="French Press">French Press</option>
+                <option value="Cold Brew">Cold Brew</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="roast-notes" class="form-label">Flavor Cupping Notes * (comma separated)</label>
+            <input type="text" id="roast-notes" class="form-input" placeholder="e.g. Blackcurrant, Jasmine, Meyer Lemon, Honey" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Select Visual Emoji Icon</label>
+            <div class="emoji-picker-row" id="emoji-picker-row">
+              <label class="emoji-radio-label"><input type="radio" name="roast-emoji" value="☕" checked /><span>☕</span></label>
+              <label class="emoji-radio-label"><input type="radio" name="roast-emoji" value="🫘" /><span>🫘</span></label>
+              <label class="emoji-radio-label"><input type="radio" name="roast-emoji" value="🌸" /><span>🌸</span></label>
+              <label class="emoji-radio-label"><input type="radio" name="roast-emoji" value="🍯" /><span>🍯</span></label>
+              <label class="emoji-radio-label"><input type="radio" name="roast-emoji" value="🍫" /><span>🍫</span></label>
+              <label class="emoji-radio-label"><input type="radio" name="roast-emoji" value="🍒" /><span>🍒</span></label>
+              <label class="emoji-radio-label"><input type="radio" name="roast-emoji" value="🌿" /><span>🌿</span></label>
+              <label class="emoji-radio-label"><input type="radio" name="roast-emoji" value="🍊" /><span>🍊</span></label>
+              <label class="emoji-radio-label"><input type="radio" name="roast-emoji" value="🌙" /><span>🌙</span></label>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn-secondary" data-close-modal="add-roast-modal">Cancel</button>
+            <button type="submit" class="btn-primary" id="submit-roast-btn">Submit Roast</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODAL 3: Cupping Reviews & Community Tasting Notes -->
+    <!-- ========================================================================= -->
+    <div id="reviews-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="reviews-modal-title">
+      <div class="modal-backdrop"></div>
+      <div class="modal-card reviews-card">
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <span class="modal-emoji" id="review-modal-icon">☕</span>
+            <div>
+              <h2 id="reviews-modal-title" class="modal-title">Tasting & Cupping Notes</h2>
+              <p class="modal-subtitle" id="reviews-modal-sub">Community reviews for roast</p>
+            </div>
+          </div>
+          <button type="button" class="modal-close-btn" data-close-modal="reviews-modal" aria-label="Close Reviews">✕</button>
+        </div>
+
+        <div class="modal-body reviews-body">
+          <!-- Active Coffee Info Highlight -->
+          <div class="active-coffee-summary-box" id="review-coffee-info">
+            <!-- Dynamic info loaded here -->
+          </div>
+
+          <!-- Existing Reviews List -->
+          <div class="reviews-section-heading">
+            <h3>Community Barista Notes (<span id="reviews-count-num">0</span>)</h3>
+          </div>
+          <div class="reviews-list" id="reviews-list-container">
+            <div class="empty-reviews">No cupping reviews yet. Be the first to leave one below!</div>
+          </div>
+
+          <!-- Add Review Form -->
+          <div class="add-review-section">
+            <h3 class="add-review-title">Leave Your Cupping Review</h3>
+            <form id="add-review-form" class="review-form">
+              <input type="hidden" id="review-coffee-id" />
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="review-author" class="form-label">Your Name / Barista Moniker *</label>
+                  <input type="text" id="review-author" class="form-input" placeholder="e.g. Alex (Coffee Enthusiast)" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Your Star Rating *</label>
+                  <div class="interactive-star-rating" id="review-star-rating">
+                    <span class="star-btn" data-star="1">★</span>
+                    <span class="star-btn" data-star="2">★</span>
+                    <span class="star-btn" data-star="3">★</span>
+                    <span class="star-btn" data-star="4">★</span>
+                    <span class="star-btn active" data-star="5">★</span>
+                    <input type="hidden" id="review-rating-value" value="5" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="review-notes-text" class="form-label">Tasting Notes & Impression *</label>
+                <textarea id="review-notes-text" class="form-textarea" rows="3" placeholder="Describe the aroma, cup clarity, body, sweetness, and aftertaste..." required></textarea>
+              </div>
+
+              <!-- Cupping Score Sliders -->
+              <div class="cupping-sliders-grid">
+                <div class="slider-group">
+                  <div class="slider-label-row">
+                    <span>Acidity / Brightness:</span>
+                    <span id="acidity-val">4 / 5</span>
+                  </div>
+                  <input type="range" id="slider-acidity" min="1" max="5" value="4" />
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label-row">
+                    <span>Body / Mouthfeel:</span>
+                    <span id="body-val">4 / 5</span>
+                  </div>
+                  <input type="range" id="slider-body" min="1" max="5" value="4" />
+                </div>
+                <div class="slider-group">
+                  <div class="slider-label-row">
+                    <span>Sweetness:</span>
+                    <span id="sweetness-val">4 / 5</span>
+                  </div>
+                  <input type="range" id="slider-sweetness" min="1" max="5" value="4" />
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn-primary" id="submit-review-btn">Post Cupping Review</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODAL 4: Single Roast Brew Recipe Guide -->
+    <!-- ========================================================================= -->
+    <div id="brew-guide-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="brew-guide-title">
+      <div class="modal-backdrop"></div>
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <span class="modal-emoji">📖</span>
+            <div>
+              <h2 id="brew-guide-title" class="modal-title">Brewing Guide</h2>
+              <p class="modal-subtitle" id="brew-guide-sub">Tailored recipe</p>
+            </div>
+          </div>
+          <button type="button" class="modal-close-btn" data-close-modal="brew-guide-modal" aria-label="Close Brew Guide">✕</button>
+        </div>
+
+        <div class="modal-body" id="brew-guide-content">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODAL 5: Keyboard Shortcuts Reference -->
+    <!-- ========================================================================= -->
+    <div id="shortcuts-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="shortcuts-title">
+      <div class="modal-backdrop"></div>
+      <div class="modal-card shortcuts-card">
+        <div class="modal-header">
+          <div class="modal-title-group">
+            <span class="modal-emoji">⌨️</span>
+            <div>
+              <h2 id="shortcuts-title" class="modal-title">Keyboard Shortcuts</h2>
+              <p class="modal-subtitle">Fast navigation shortcuts for power baristas</p>
+            </div>
+          </div>
+          <button type="button" class="modal-close-btn" data-close-modal="shortcuts-modal" aria-label="Close Shortcuts">✕</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="shortcuts-table">
+            <div class="shortcut-row">
+              <span class="shortcut-key-badge"><kbd>/</kbd></span>
+              <span class="shortcut-desc">Focus live search input</span>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-key-badge"><kbd>B</kbd></span>
+              <span class="shortcut-desc">Toggle Barista Brew Lab & Timer</span>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-key-badge"><kbd>N</kbd></span>
+              <span class="shortcut-desc">Add new coffee roast</span>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-key-badge"><kbd>T</kbd></span>
+              <span class="shortcut-desc">Toggle Dark Roast / Cafe Creme theme</span>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-key-badge"><kbd>M</kbd></span>
+              <span class="shortcut-desc">Toggle synthesized sound effects</span>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-key-badge"><kbd>F</kbd></span>
+              <span class="shortcut-desc">Filter to My Wishlist / Favorites</span>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-key-badge"><kbd>?</kbd></span>
+              <span class="shortcut-desc">Open this shortcuts cheatsheet</span>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-key-badge"><kbd>Esc</kbd></span>
+              <span class="shortcut-desc">Close any open modal or clear search</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Application Script -->
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
